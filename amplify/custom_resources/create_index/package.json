@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@opensearch-project/opensearch": "^2.13.0",
+    "@aws-sdk/credential-provider-node": "^3.470.0"
+  },
+  "devDependencies": {
+    "@aws-lambda-powertools/logger": "^2.14.0"
+  }
+}
