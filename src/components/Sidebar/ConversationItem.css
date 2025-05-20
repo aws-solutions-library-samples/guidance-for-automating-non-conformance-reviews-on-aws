@@ -1,0 +1,7 @@
+.truncated-link {
+    display: inline-block;
+    max-width: 152px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

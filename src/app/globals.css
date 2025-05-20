@@ -1,0 +1,179 @@
+@import "@aws-amplify/ui-react/styles/reset.css";
+@import "@aws-amplify/ui-react/styles.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: var(--amplify-colors-background-primary);
+}
+
+.loading-splash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-color: #111827;
+  position: relative;
+  overflow: hidden;
+}
+
+.space-animation {
+  color: #60A5FA;
+  position: relative;
+  z-index: 2;
+  margin-top: 24vh;
+}
+
+.loading-text {
+  margin-top: 1.5rem;
+  color: #E5E7EB;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  animation: glow 2s ease-in-out infinite;
+  z-index: 2;
+}
+
+.planet {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.orbit {
+  stroke: #374151;
+  fill: none;
+  stroke-width: 0.5;
+}
+
+.satellite {
+  animation: orbit 4s linear infinite;
+}
+
+/* Star background effect */
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+          radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+          radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+          radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+          radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+          radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0));
+  background-repeat: repeat;
+  background-size: 100px 100px;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(8px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(8px) rotate(-360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+    opacity: 1;
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(96, 165, 250, 0.8);
+    opacity: 0.8;
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.chat-input-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  width: 100%;
+  background-color: rgba(17, 24, 39, 0.8);
+  padding: 8px 16px;
+  backdrop-filter: blur(8px);
+}
+
+.chat-input {
+  border: 1px solid #60A5FA;
+  border-radius: 10px;
+  outline: none;
+  width: 500px;
+  padding: 8px;
+  margin: 20px 0 -8px 60px;
+  background: transparent;
+  letter-spacing: 1px;
+  caret-color: #E5E7EB;
+  color: #E5E7EB;
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-shadow: 0 0 1px #000, 0 0 2px #000;
+  animation: glow 2s ease-in-out infinite;
+  text-align: right;
+}
+
+.chat-input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.chat-input::placeholder {
+  color: rgba(229, 231, 235, 0.6);
+  text-shadow: 0 0 4px rgba(229, 231, 235, 0.3);
+}
+
+.send-button {
+  background-color: transparent !important;
+  color: #60A5FA !important;
+  border: none !important;
+  padding: 8px !important;
+  height: 40px !important;
+  width: 40px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+  margin-bottom: 2px !important;
+}
+
+.send-button:hover {
+  background-color: rgba(96, 165, 250, 0.1) !important;
+  transform: translateY(-1px) !important;
+}
+
+.send-button:active {
+  transform: translateY(0) !important;
+}

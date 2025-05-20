@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "jira-client": "^8.2.2"
+  }
+}
