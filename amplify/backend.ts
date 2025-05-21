@@ -26,9 +26,9 @@ import path from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const vpcId = process.env.AWS_VPC_ID?.trim();
+const vpcId = process.env.VPC_ID?.trim();
 if (!vpcId) {
-    throw new Error('AWS_VPC_ID environment variable is not set');
+    throw new Error('VPC_ID environment variable is not set');
 }
 
 const availabilityZones = process.env.AVAILABILITY_ZONES?.trim().split(',');
