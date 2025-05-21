@@ -1,4 +1,4 @@
-# Guidance for Aerospace Technicians Assistant on AWS
+# Guidance for Automating Non-Conformance Reviews on AWS
 
 ## Overview
 
@@ -85,36 +85,45 @@ The following table provides a sample cost breakdown for deploying this Guidance
 # Download and install from https://aws.amazon.com/cli/
 ```
 
-2. Start Local Development:
+2. Fork and clone the repository:
+```powershell
+# Fork and clone
+git clone https://github.com/aws-solutions-library-samples/guidance-for-automating-non-conformance-reviews-on-aws
+cd guidance-for-aerospace-technicians-assistant-on-aws
+```
+
+3. Start Local Development:
 ```powershell
 # Install dependencies
 npm install
 ```
 
-3. Add environment variables
+4. Add environment variables
 ```
-AWS_VPC_ID=<your-vpc-id>
+VPC_ID=<your-vpc-id>
 AVAILABILITY_ZONES=<your-az-list>
 VPC_CIDR_BLOCK=<your-vpc-cidr>
 PUBLIC_SUBNET_IDS=<your-subnet-ids>
+
+# If you don't add Jira envs, this feature will be disabled
 JIRA_API_ENDPOINT=<your-jira-endpoint>
 JIRA_API_KEY=<your-jira-api-key>
 JIRA_USERNAME=<your-jira-username>
 ```
 
-4. Configure AWS Amplify Sandbox:
+5. Configure AWS Amplify Sandbox:
 ```powershell
 # Create new Amplify sandbox environment
 npx ampx sandbox --profile <aws-profile-name> --once
 ```
 
-5. Start Local UI:
+6. Start Local UI:
 ```powershell
 # Start local front-end
 npm run dev
 ```
 
-### Remote Deployment (AWS Amplify Console)
+### Remote Deployment (AWS Amplify Console) 
 1. Access AWS Amplify Console:
   - Log in to AWS Console
   - Navigate to AWS Amplify
@@ -128,10 +137,12 @@ npm run dev
   - Expand Advanced settings
   - Add environment variables
     ```env
-    AWS_VPC_ID=<your-vpc-id>
+    VPC_ID=<your-vpc-id>
     AVAILABILITY_ZONES=<your-az-list>
     VPC_CIDR_BLOCK=<your-vpc-cidr>
     PUBLIC_SUBNET_IDS=<your-subnet-ids>
+    
+    # If you don't add Jira envs, this feature will be disabled
     JIRA_API_ENDPOINT=<your-jira-endpoint>
     JIRA_API_KEY=<your-jira-api-key>
     JIRA_USERNAME=<your-jira-username>
@@ -145,6 +156,20 @@ npm run dev
 5. Access Application:
   - Once deployed, access your application using the provided Amplify URL
 
+## Upload Aircraft manuals
+Once the solution is deployed, you still have to manually upload all Aircraft manuals.
+- Log in to AWS Console
+- Navigate to S3
+- Click on "ncr-knowledge-base-bucket-<branch>"
+- Upload your manuals
+
+After that, you have to Sync your knowledge base 
+- Navigate to Amazon Bedrock
+- Select Knowledge Bases
+- Click on "ncr-knowledge-base-<branch>"
+- Check the "ncr-data-source" and click on "Sync"
+
+Now your whole setup is done. Enjoy it.
 
 ## Repository Structure
 ```
@@ -166,3 +191,8 @@ npm run dev
 ├── package.json               # Project dependencies and scripts
 └── tsconfig.json             # TypeScript configuration
 ```
+
+## Troubleshooting
+  - Error while creating S3 bucket
+    * S3 bucket is created based on the branch name, pay attention to special characters that are not allowed
+    * https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html
